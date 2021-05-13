@@ -1,0 +1,76 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    box-sizing: border-box;
+    
+}
+
+.message-form{
+    position: fixed;
+    bottom:0;
+    min-height:80px;
+    width:100%;
+    display:flex;
+    background-color: aqua;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.message-form>*{
+    margin:10px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+.message{
+    width:80%;
+    padding-left: 10px;
+    padding-right:10px;
+}
+
+.message-form>button{
+    width:20%;
+    margin-right: 30px;
+    background-color: rgb(130, 199, 91);
+    color:rgb(32, 68, 31);
+    font-size:20px;
+}
+
+#message-container{
+    width:90%;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#message-container .others-message{
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: 2px black solid;
+    padding:10px;
+    margin:20px;
+    font-size: 3vh;
+    max-width: 500px;
+    float: left;
+}
+
+#message-container .own-message{
+    background-color: rgba(11, 241, 80, 0.521);
+    color:rgb(7, 27, 11);
+    float:right;
+    border-radius: 20px;
+    border: 2px black solid;
+    padding:10px;
+    margin:20px;
+    font-size: 3vh;
+    max-width: 500px;
+}
+
+
+.other-name,.own{
+    font-size: 2vh;
+}
