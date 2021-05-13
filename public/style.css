@@ -43,6 +43,9 @@ body{
     padding:20px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 100px;
 }
 
 
@@ -53,7 +56,7 @@ body{
     border: 2px black solid;
     padding:10px;
     margin:20px;
-    font-size: 3vh;
+    font-size: 25px;
     max-width: 500px;
     float: left;
 }
@@ -66,11 +69,22 @@ body{
     border: 2px black solid;
     padding:10px;
     margin:20px;
-    font-size: 3vh;
+    font-size: 25px;
     max-width: 500px;
 }
 
 
 .other-name,.own{
-    font-size: 2vh;
+    font-size: 20px;
+}
+
+.user-joined{
+    margin-left:20px;
+    background-color: rgb(197, 240, 216);
+    color:rgb(78, 78, 78);
+    border-radius: 20px;
+    border: 1px black solid;
+    font-size: 15px;
+    padding:10px;
+    float: left;
 }

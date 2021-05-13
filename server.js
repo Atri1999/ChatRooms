@@ -22,6 +22,7 @@ io.on('connection',socket=>{
 
     socket.on('user-connected',name=>{
         Users[socket.id]=name;
+        socket.broadcast.emit("new-user-connected",Users[socket.id]);
     })
 
     socket.on('disconnect',()=>{

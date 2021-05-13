@@ -1,47 +1,71 @@
-//const socket=io();
+const socket=io();
+const messageContainer=document.querySelector('#message-container');
+const name=prompt('What is your name?');
 
-const messageContainer=document.getElementsByClassName('message-container');
-//const name=prompt('What is your name?');
+socket.emit('user-connected',name);
+socket.on('new-user-connected',joinMessage(nameV));
 
+/*appendOtherMessage("Atri","Hi this is me");
+appendOwnMessage("Hsi thiss iss msfe");
+joinMessage("Atri");
+appendOtherMessage("Aksssh","Hi thisfsfd is me");
+appendOwnMessage("akhjfdhs msfe");
+appendOwnMessage("Hsi thiss iss msfe");
+joinMessage("Atri");
+appendOtherMessage("Aksssh","Hi thisfsfd is me");*/
 
-//socket.emit('user-connected',name);
-
-/*<div id="message-container">
-        <div>
-            <div class="others-message">
-                <div class="other-name">Name</div>
-                <div class="other-msg">Name's message</div>
-            </div>
-        </div>
-        <div>
-            <div class="own-message">
-                <div class="own">You</div>
-                <div class="own-msg">your message</div>
-            </div>
-        </div>
-</div>*/
 
 function appendOtherMessage(name,message){
     var ele=document.createElement('div')
     var otherMessage=document.createElement('div')
-    otherMessage.class="others-message"
+    otherMessage.className="others-message"
     
     var otherName=document.createElement('div')
-    otherName.class="other-name"
+    otherName.className="other-name"
     otherName.innerHTML=name
     
     var otherMsg=document.createElement('div')
-    otherMsg.class="other-msg"
+    otherMsg.className="other-msg"
     otherMsg.innerHTML=message
 
     otherMessage.appendChild(otherName)
     otherMessage.appendChild(otherMsg)
 
     ele.appendChild(otherMessage)
-    messageContainer.append (ele)    
+    messageContainer.appendChild(ele)    
 
 }
 
-appendOtherMessage("Atri","Hi this is me");
+function joinMessage(name){
+    var ele=document.createElement('div')
 
-appendOtherMessage("Atdjd","Hsi thiss iss msfe");
+    var joiningMsg=document.createElement('div')
+    joiningMsg.className="user-joined"
+    joiningMsg.innerHTML=name+" Joined"
+
+    ele.appendChild(joiningMsg)
+    messageContainer.append(ele)
+}
+    
+
+function appendOwnMessage(message){
+    var ele=document.createElement('div')
+    var ownMessage=document.createElement('div')
+    ownMessage.className="own-message"
+    
+    var ownName=document.createElement('div')
+    ownName.className="own"
+    ownName.innerHTML="You"
+    
+    var ownMsg=document.createElement('div')
+    ownMsg.className="own-msg"
+    ownMsg.innerHTML=message
+
+    ownMessage.appendChild(ownName)
+    ownMessage.appendChild(ownMsg)
+
+    ele.appendChild(ownMessage)
+    messageContainer.appendChild(ele)    
+
+}
+
