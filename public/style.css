@@ -28,6 +28,7 @@ body{
     width:80%;
     padding-left: 10px;
     padding-right:10px;
+    outline:none;
 }
 
 .message-form>button{
@@ -80,6 +81,7 @@ body{
 
 .user-joined{
     margin-left:20px;
+    margin-top: 20px;
     background-color: rgb(197, 240, 216);
     color:rgb(78, 78, 78);
     border-radius: 20px;

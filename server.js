@@ -18,11 +18,14 @@ app.get('/',(req,res)=>{
 const Users={}
 
 io.on('connection',socket=>{
-    console.log("A user connected");
 
     socket.on('user-connected',name=>{
         Users[socket.id]=name;
         socket.broadcast.emit("new-user-connected",Users[socket.id]);
+    })
+
+    socket.on('send-messages',message=>{
+        socket.broadcast.emit("receive-message",{ name:Users[socket.id],message:message });
     })
 
     socket.on('disconnect',()=>{
