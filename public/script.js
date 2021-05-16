@@ -3,8 +3,18 @@ const messageContainer=document.querySelector('#message-container');
 const messageForm=document.querySelector('.message-form');
 const message=document.querySelector('.message');
 var content=document.getElementsByClassName('recent');
-const name=prompt('What is your name?');
 
+if(messageContainer!=null){
+    const name=prompt('What is your name?');
+
+    messageForm.addEventListener('submit',e=>{
+        e.preventDefault();
+        socket.emit('send-messages',message.value);
+        appendOwnMessage(message.value);
+        message.value="";
+        messageContainer.scrollIntoView(false);
+    })
+}
 
 
 socket.emit('user-connected',name);
@@ -19,13 +29,7 @@ socket.on('receive-message',data=>{
 })
 
 
-messageForm.addEventListener('submit',e=>{
-    e.preventDefault();
-    socket.emit('send-messages',message.value);
-    appendOwnMessage(message.value);
-    message.value="";
-    messageContainer.scrollIntoView(false);
-})
+
 
 
 

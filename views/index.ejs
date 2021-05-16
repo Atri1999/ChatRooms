@@ -10,28 +10,19 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div id="message-container">
-        <!--<div>
-            <div class="user-joined">
-                User Joined
+    <div id="rooms-container">
+        <% Object.keys(rooms).forEach(room=>{ %> 
+            <div class="rooms">
+                <span class="rooms-names"><%=room %></span>
+                <span><button class="rooms-button">Join Room</button></span>
             </div>
-        </div>
-        <div>
-            <div class="others-message">
-                <div class="other-name">Name</div>
-                <div class="other-msg">Name's message</div>
-            </div>
-        </div>
-        <div>
-            <div class="own-message">
-                <div class="own">You</div>
-                <div class="own-msg">your message</div>
-            </div>
-        </div>-->
+        <% }); %> 
     </div>
-    <form action="" class="message-form">
-        <input class="message" type=text name="message" required>
-        <button type="submit" name="Send">Send</button>
-    </form>
+    <div id="create-rooms" >
+        <form id="rooms-form" action="/room" method="post">
+            <input name="room" type="text" required>
+            <button type="submit"> New Room</button>
+        </form>
+    </div>
 </body>
 </html>

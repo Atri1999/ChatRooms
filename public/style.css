@@ -8,6 +8,18 @@ body{
     
 }
 
+
+#header{
+    width:100%;
+    height:50px;
+    font-size: 30px;
+    position:fixed;
+    top:0;
+    padding-top:20px ;
+    padding-left: 50px;
+    background-color: aqua;
+}
+
 .message-form{
     position: fixed;
     bottom:0;
@@ -19,19 +31,19 @@ body{
     font-size: 20px;
 }
 
-.message-form>*{
+.message-form>*,#rooms-form>*{
     margin:10px;
     border-radius: 20px;
     font-size: 20px;
 }
-.message{
+.message,#rooms-form>input{
     width:80%;
     padding-left: 10px;
     padding-right:10px;
     outline:none;
 }
 
-.message-form>button{
+.message-form>button,#rooms-form>button{
     width:20%;
     margin-right: 30px;
     background-color: rgb(130, 199, 91);
@@ -41,7 +53,7 @@ body{
 
 #message-container{
     width:90%;
-    padding:20px;
+    padding:50px;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
@@ -89,4 +101,45 @@ body{
     font-size: 15px;
     padding:10px;
     float: left;
+}
+
+
+
+
+
+
+
+
+.rooms,#create-rooms{
+    width:100%;
+    height:60px;
+    background-color: rgb(119, 190, 190);
+    color:rgb(48, 54, 49);
+    font-size: 30px;
+    padding:20px;
+    margin-bottom: 20px;
+}
+
+.rooms-names{
+    margin-left: 10px;
+}
+
+.rooms-button{
+    margin-left: 250px;
+    padding: 10px;
+    background-color: rgb(223, 232, 233);
+    font:20px;
+    border-radius: 20px;
+}
+
+
+
+#rooms-form>input{
+    width:40%;
+    height:30px;
+}
+
+#rooms-form>button{
+    width:10%;
+    height:30px;
 }

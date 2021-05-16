@@ -11,8 +11,23 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({ extended:false }))
 
+const rooms={ room:{}}
+
 app.get('/',(req,res)=>{
-    res.render('index');
+    res.render('index',{rooms});
+})
+
+app.post('/room',(req,res)=>{
+    if(rooms[req.body.room]==null){
+        rooms[req.body.room]={};
+        res.redirect(req.body.room);
+    }
+    res.redirect('/')
+
+})
+
+app.get('/:room',(req,res)=>{
+    res.render('room',{ room:req.params.room })
 })
 
 const Users={}
@@ -29,7 +44,7 @@ io.on('connection',socket=>{
     })
 
     socket.on('disconnect',()=>{
-        console.log("a user disconnected");
+        delete Users[socket.id]
     })
 })
 
