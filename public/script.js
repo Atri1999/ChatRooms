@@ -4,20 +4,49 @@ const messageForm=document.querySelector('.message-form');
 const message=document.querySelector('.message');
 var content=document.getElementsByClassName('recent');
 
+const roomContainer=document.querySelector('#rooms-container')
+
 if(messageContainer!=null){
     const name=prompt('What is your name?');
 
+    socket.emit('user-connected',name,roomName);
+
+
     messageForm.addEventListener('submit',e=>{
         e.preventDefault();
-        socket.emit('send-messages',message.value);
+        socket.emit('send-messages', roomName,message.value );
         appendOwnMessage(message.value);
         message.value="";
         messageContainer.scrollIntoView(false);
     })
 }
 
+socket.on('room-created',(name)=>{
+    /*<div class="rooms">
+        <span class="rooms-names"><%=room %></span>
+        <a href="/<%= room %>" class="rooms-button">Join Room</a>
+    </div> */
 
-socket.emit('user-connected',name);
+    let room=document.createElement('div')
+    room.className="rooms"
+
+    let roomName=document.createElement('span')
+    roomName.className="rooms-names"
+    roomName.innerHTML=name
+
+    let roomButton=document.createElement('a')
+    roomButton.className="rooms-button"
+    roomButton.href=`/${name}`
+    roomButton.innerHTML="Join Room"
+
+    room.appendChild(roomName)
+    room.appendChild(roomButton)
+
+    roomContainer.append(room)
+
+})
+
+
 socket.on('new-user-connected',nameV=>{
     joinMessage(nameV);
 });

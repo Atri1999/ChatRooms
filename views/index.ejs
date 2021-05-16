@@ -14,7 +14,7 @@
         <% Object.keys(rooms).forEach(room=>{ %> 
             <div class="rooms">
                 <span class="rooms-names"><%=room %></span>
-                <span><button class="rooms-button">Join Room</button></span>
+                <a href="/<%= room %>" class="rooms-button">Join Room</a>
             </div>
         <% }); %> 
     </div>

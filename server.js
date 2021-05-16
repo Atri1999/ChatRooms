@@ -11,40 +11,46 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({ extended:false }))
 
-const rooms={ room:{}}
+const rooms={room:{users:{}}}
 
 app.get('/',(req,res)=>{
     res.render('index',{rooms});
 })
 
 app.post('/room',(req,res)=>{
-    if(rooms[req.body.room]==null){
-        rooms[req.body.room]={};
-        res.redirect(req.body.room);
+    if(rooms[req.body.room]!=null){
+        return res.redirect('/')
     }
-    res.redirect('/')
+    
+    rooms[req.body.room]={ users:{} };
+    res.redirect(req.body.room);
+    io.emit("room-created",req.body.room);
 
 })
 
 app.get('/:room',(req,res)=>{
+    /*if(rooms[req.params.room]===Null){
+        return res.redirect('/')
+    }*/
     res.render('room',{ room:req.params.room })
 })
 
-const Users={}
 
 io.on('connection',socket=>{
 
-    socket.on('user-connected',name=>{
-        Users[socket.id]=name;
-        socket.broadcast.emit("new-user-connected",Users[socket.id]);
+    socket.on('user-connected',(name,roomName)=>{
+        //console.log(rooms)
+        socket.join(roomName)
+        rooms[roomName].users[socket.id]=name;
+        socket.to(roomName).emit("new-user-connected",rooms[roomName].users[socket.id]);
     })
 
-    socket.on('send-messages',message=>{
-        socket.broadcast.emit("receive-message",{ name:Users[socket.id],message:message });
+    socket.on('send-messages',(roomName,message)=>{
+        socket.to(roomName).emit("receive-message",{ name:rooms[roomName].users[socket.id],message:message });
     })
 
     socket.on('disconnect',()=>{
-        delete Users[socket.id]
+        //delete rooms[roomName].users[socket.id]
     })
 })
 

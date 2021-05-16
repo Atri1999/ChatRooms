@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat With Fun</title>
+    <script>const roomName="<%= room %>"</script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css"/>
@@ -31,7 +32,7 @@
         </div>-->
     </div>
     <form action="" class="message-form">
-        <input class="message" type=text name="message" required>
+        <input class="message" type="text" name="message" required>
         <button type="submit" name="Send">Send</button>
     </form>
 </body>
