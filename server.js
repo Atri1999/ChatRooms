@@ -11,7 +11,7 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({ extended:false }))
 
-const rooms={room:{users:{}}}
+const rooms={'Room 1':{users:{}}}
 
 app.get('/',(req,res)=>{
     res.render('index',{rooms});
@@ -35,6 +35,15 @@ app.get('/:room',(req,res)=>{
     res.render('room',{ room:req.params.room })
 })
 
+function getRoomNames(socket){
+
+    return Object.entries(rooms).reduce((usersRooms,[name,room])=>{
+        if(room.users[socket.id]!=null){
+            usersRooms.push(name)
+        }
+        return usersRooms
+    },[])
+}
 
 io.on('connection',socket=>{
 
@@ -50,9 +59,16 @@ io.on('connection',socket=>{
     })
 
     socket.on('disconnect',()=>{
-        //delete rooms[roomName].users[socket.id]
+        //console.log(rooms)
+        getRoomNames(socket).forEach(roomName=>{
+            socket.to(roomName).emit('user-disconnected',{ name:rooms[roomName].users[socket.id] })
+            delete rooms[roomName].users[socket.id]
+        })
+        //console.log(rooms)
     })
 })
+
+
 
 server.listen(PORT,()=>{
     console.log("Listening to Port ");

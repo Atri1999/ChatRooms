@@ -14,14 +14,14 @@
         <% Object.keys(rooms).forEach(room=>{ %> 
             <div class="rooms">
                 <span class="rooms-names"><%=room %></span>
-                <a href="/<%= room %>" class="rooms-button">Join Room</a>
+                <a href="/<%= room %>" class="rooms-button"><button>Join</button></a>
             </div>
         <% }); %> 
     </div>
     <div id="create-rooms" >
         <form id="rooms-form" action="/room" method="post">
-            <input name="room" type="text" required>
-            <button type="submit"> New Room</button>
+            <input name="room" type="text" placeholder="New room name"required>
+            <button type="submit"> Create</button>
         </form>
     </div>
 </body>

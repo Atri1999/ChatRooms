@@ -18,7 +18,7 @@ if(messageContainer!=null){
         appendOwnMessage(message.value);
         message.value="";
         messageContainer.scrollIntoView(false);
-    })
+    });
 }
 
 socket.on('room-created',(name)=>{
@@ -44,7 +44,7 @@ socket.on('room-created',(name)=>{
 
     roomContainer.append(room)
 
-})
+});
 
 
 socket.on('new-user-connected',nameV=>{
@@ -55,10 +55,12 @@ socket.on('receive-message',data=>{
     appendOtherMessage(data.name,data.message);
 
     messageContainer.scrollIntoView(false);
-})
+});
 
 
-
+socket.on('user-disconnected',nameL=>{
+    leftMessage(nameL.name)
+});
 
 
 
@@ -105,6 +107,16 @@ function joinMessage(name){
     messageContainer.append(ele)
 }
     
+function leftMessage(name){
+    var ele=document.createElement('div')
+    ele.className="recent"
+    var joiningMsg=document.createElement('div')
+    joiningMsg.className="user-joined"
+    joiningMsg.innerHTML=name+" Left"
+
+    ele.appendChild(joiningMsg)
+    messageContainer.append(ele)
+}
 
 function appendOwnMessage(message){
     var ele=document.createElement('div')
