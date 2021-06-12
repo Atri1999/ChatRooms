@@ -35,9 +35,11 @@ socket.on('room-created',(name)=>{
     roomName.innerHTML=name
 
     let roomButton=document.createElement('a')
+    let button=document.createElement('button')
     roomButton.className="rooms-button"
     roomButton.href=`/${name}`
-    roomButton.innerHTML="Join Room"
+    button.innerHTML="Join"
+    roomButton.appendChild(button)
 
     room.appendChild(roomName)
     room.appendChild(roomButton)

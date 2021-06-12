@@ -23,16 +23,21 @@ app.post('/room',(req,res)=>{
     }
     
     rooms[req.body.room]={ users:{} };
-    res.redirect(req.body.room);
+    //console.log(rooms)
     io.emit("room-created",req.body.room);
+    res.redirect(req.body.room);
+    
 
 })
 
 app.get('/:room',(req,res)=>{
-    /*if(rooms[req.params.room]===Null){
-        return res.redirect('/')
-    }*/
-    res.render('room',{ room:req.params.room })
+    //console.log(req.params.room)
+    if (req.params.room in rooms){
+        return res.render('room',{ room:req.params.room })
+           
+    }
+    res.redirect('/') 
+    //
 })
 
 function getRoomNames(socket){
@@ -63,11 +68,21 @@ io.on('connection',socket=>{
         getRoomNames(socket).forEach(roomName=>{
             socket.to(roomName).emit('user-disconnected',{ name:rooms[roomName].users[socket.id] })
             delete rooms[roomName].users[socket.id]
+            if (roomName!="Room 1" && isEmpty(rooms[roomName].users)){
+                delete rooms[roomName]
+            }
         })
         //console.log(rooms)
     })
 })
 
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
 
 server.listen(PORT,()=>{
