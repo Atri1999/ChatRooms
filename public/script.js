@@ -7,6 +7,19 @@ var content=document.getElementsByClassName('recent');
 const roomContainer=document.querySelector('#rooms-container')
 
 if(messageContainer!=null){
+    window.onload = function () {  
+        document.onkeydown = function (e) { 
+            e=e || window.event 
+            if ((e.which || e.keyCode) == 116 || ((e.which || e.keyCode) == 82 && ctrlKeyDown)) {
+                // Pressing F5 or Ctrl+R
+                e.preventDefault();
+            } else if ((e.which || e.keyCode) == 17) {
+                // Pressing  only Ctrl
+                ctrlKeyDown = true;
+            }
+        };  
+    } 
+    
     const name=prompt('What is your name?');
 
     socket.emit('user-connected',name,roomName);
@@ -20,6 +33,15 @@ if(messageContainer!=null){
         messageContainer.scrollIntoView(false);
     });
 }
+
+socket.on('room-removed',()=>{
+    if (messageContainer==null){
+        console.log("Till Here")
+        location.reload()
+    }
+})
+
+
 
 socket.on('room-created',(name)=>{
     /*<div class="rooms">

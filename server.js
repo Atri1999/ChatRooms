@@ -70,6 +70,8 @@ io.on('connection',socket=>{
             delete rooms[roomName].users[socket.id]
             if (roomName!="Room 1" && isEmpty(rooms[roomName].users)){
                 delete rooms[roomName]
+                io.emit('room-removed')
+                
             }
         })
         //console.log(rooms)
