@@ -1,0 +1,33 @@
+
+body{
+    background-color: rgb(136, 223, 180);
+}
+.header{
+    font-size: 30px;
+    background-color: rgba(21, 107, 86, 0.801);
+    color:#ebe7e1;
+    padding:20px;
+    margin:0px;
+}
+
+.main-frame{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.main-frame>div{
+    width:45%;
+    padding:20px;
+}
+
+#rooms-form{
+    border-radius: 20px;
+
+}
+
+@media screen and (max-width: 700px) {
+    .main-frame>div{
+        width:100%;
+    }
+}

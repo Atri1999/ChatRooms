@@ -8,21 +8,27 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="index.css"/>
 </head>
 <body>
-    <div id="rooms-container">
-        <% Object.keys(rooms).forEach(room=>{ %> 
-            <div class="rooms">
-                <span class="rooms-names"><%=room %></span>
-                <a href="/<%= room %>" class="rooms-button"><button>Join</button></a>
+    <div class="header">Chat anonymous</div>
+    <div class="main-frame">
+        <div>
+            <div id="rooms-container">
+                <% Object.keys(rooms).forEach(room=>{ %> 
+                    <div class="rooms">
+                        <span class="rooms-names"><%=room %></span>
+                        <a href="/<%= room %>" class="rooms-button"><button>Join</button></a>
+                    </div>
+                <% }); %> 
             </div>
-        <% }); %> 
-    </div>
-    <div id="create-rooms" >
-        <form id="rooms-form" action="/room" method="post">
-            <input name="room" type="text" placeholder="New room name"required>
-            <button type="submit"> Create</button>
-        </form>
+        </div>
+        <div id="create-rooms" >
+            <form id="rooms-form" action="/room" method="post">
+                <input name="room" type="text" placeholder="New room name"required>
+                <button type="submit"> Create</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

@@ -7,11 +7,14 @@ body{
     box-sizing: border-box;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
+    font-family:'Courier New', Courier, monospace;
 }
 
 body::-webkit-scrollbar {
     display: none;
 }
+
+
 
 #header{
     width:100%;
@@ -53,6 +56,7 @@ body::-webkit-scrollbar {
     background-color: rgb(130, 199, 91);
     color:rgb(32, 68, 31);
     font-size:20px;
+    font-family:'Courier New', Courier, monospace;
 }
 
 #message-container{
@@ -119,7 +123,7 @@ body::-webkit-scrollbar {
     width:100%;
     display:flex;
     background-color: aqua;
-    padding: 10px;  
+    padding: 18px;  
     font-size: 25px;
 }
 
@@ -128,14 +132,14 @@ body::-webkit-scrollbar {
     padding:10px;
     min-height:100px;
     background-color:aqua;
-    
+    border-radius: 20px; 
 }
 
 .rooms-names{
     padding-top: 20px;
     float:left;
     font-size: 25px;
-    
+   
     padding-left: 30px;
 
     
@@ -158,4 +162,19 @@ body::-webkit-scrollbar {
     background-color: rgb(130, 199, 91);
     color:rgb(32, 68, 31);
     font-size:20px;
+}
+
+
+@media screen and (max-width:700px){
+    #message-container{
+        padding:0px 10px 0px 10px;
+        padding-bottom: 100px;
+        padding-top:100px;
+    }
+    #message-container *{
+        font-size: 15px;
+    }
+    #message-container .own-message{
+        margin-right:10px;
+    }
 }
